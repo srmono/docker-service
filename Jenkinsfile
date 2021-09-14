@@ -19,7 +19,7 @@ pipeline {
         stage('Build Docker image'){
             steps {
               
-                sh 'docker build -t  ustapi/docker_service:${BUILD_NUMBER} .'
+                sh 'docker build -t  ustapi/docker-service:${BUILD_NUMBER} .'
             }
         }
 
@@ -34,14 +34,14 @@ pipeline {
 
         stage('Docker Push'){
             steps {
-                sh 'docker push ustapi/docker_service:${BUILD_NUMBER}'
+                sh 'docker push ustapi/docker-service:${BUILD_NUMBER}'
             }
         }
         
         stage('Docker deploy'){
             steps {
                
-                sh 'docker run -itd -p  8085:8085 ustapi/docker_service:${BUILD_NUMBER}'
+                sh 'docker run -itd -p  8085:8085 ustapi/docker-service:${BUILD_NUMBER}'
             }
         }
 
